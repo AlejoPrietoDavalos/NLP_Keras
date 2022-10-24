@@ -85,7 +85,7 @@ for p in list(char_common.keys()):
         word_to_index[p] = indice
         index_to_word.append(p)
         indice += 1
-        uncommon = copy(index_to_word)
+uncommon = copy(index_to_word)
 
 
 with open("el_quijote_lower.txt", "r", encoding="ascii", errors='ignore') as f:
