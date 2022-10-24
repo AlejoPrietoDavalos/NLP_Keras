@@ -100,13 +100,25 @@ with open("el_quijote_lower.txt", "r", encoding="ascii", errors='ignore') as f:
                     indice += 1
                 i = j+1
 
-#print(string_to_array("y asi, estoy probando. Sale bien?\n", uncommon))
+
+#----------Creamos el modelo----------
+n_a = 25
+entrada = Input(shape=(None, len(index_to_word)))
+a0 = Input(shape=(n_a,))
+
+celda_recurrente = SimpleRNN(n_a, activation='tanh', return_state=True)
+
+capa_salida = Dense(len(index_to_word), activation='softmax')
 
 
 
+hs, _ = celda_recurrente(entrada, initial_state=a0)
+salida = [capa_salida(hs)]
+modelo = Model([entrada, a0], salida)
 
 
-
+optimizer = SGD(lr=0.0005)
+modelo.compile(optimizer=optimizer, loss='categorical_crossentropy')
 
 
 
